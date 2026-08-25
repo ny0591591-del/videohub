@@ -1,8 +1,13 @@
-// HomeAndShortsScreen.js - YouTube Long Videos + TikTok Shorts Feed
+// HomeAndShortsScreen.js - YouTube Long Videos + TikTok Shorts Feed with All Ad Units
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity, Image, Dimensions, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
+
+// گوگل ایڈ موب تمام ایڈ یونٹ آئی ڈیز
+const BANNER_AD_UNIT_ID = 'ca-app-pub-4621380165642947/2330852071';
+const INTERSTITIAL_AD_UNIT_ID = 'ca-app-pub-4621380165642947/4425698226';
+const REWARDED_AD_UNIT_ID = 'ca-app-pub-4621380165642947/7913411893';
 
 export default function HomeAndShortsScreen() {
   const [feedType, setFeedType] = useState('Long'); // 'Long' یا 'Shorts'
@@ -21,7 +26,7 @@ export default function HomeAndShortsScreen() {
 
   return (
     <View style={styles.container}>
-      {/* اوپر کا موڈ سوئچ ٹوگل */}
+      {/* اوپر کا موڈ سوئچ ٹوگل (Long Videos vs Shorts) */}
       <View style={styles.topToggleBar}>
         <TouchableOpacity 
           style={[styles.toggleBtn, feedType === 'Long' && styles.activeToggle]} 
@@ -38,7 +43,7 @@ export default function HomeAndShortsScreen() {
         </TouchableOpacity>
       </View>
 
-      {/* 1. لانگ ویڈیو فیڈ */}
+      {/* 1. یوٹیوب اسٹائل لانگ ویڈیو فیڈ */}
       {feedType === 'Long' ? (
         <ScrollView style={styles.feedList}>
           {longVideos.map((item) => (
@@ -48,6 +53,7 @@ export default function HomeAndShortsScreen() {
                 <Text style={styles.durationBadge}>{item.duration}</Text>
               </View>
 
+              {/* ریزولوشن کوالٹی چننے کی پٹی */}
               <View style={styles.qualityRow}>
                 <Text style={styles.qualityLabel}>Quality:</Text>
                 {['360p', '480p', '720p', '1080p'].map((q) => (
@@ -68,7 +74,7 @@ export default function HomeAndShortsScreen() {
           ))}
         </ScrollView>
       ) : (
-        /* 2. شارٹس فیڈ */
+        /* 2. ٹک ٹاک اسٹائل فل اسکرین شارٹس فیڈ */
         <FlatList
           data={shortsVideos}
           keyExtractor={(item) => item.id}
@@ -78,8 +84,11 @@ export default function HomeAndShortsScreen() {
             <View style={styles.shortsPage}>
               <View style={styles.shortsVideoPlaceholder}>
                 <Text style={styles.shortsPlayingText}>▶️ Playing Vertical Shorts Stream</Text>
+                <Text style={styles.adBannerText}>[Banner ID: {BANNER_AD_UNIT_ID.slice(25)}...]</Text>
+                <Text style={styles.adBannerText}>[Rewarded ID: {REWARDED_AD_UNIT_ID.slice(25)}...]</Text>
               </View>
 
+              {/* دائیں جانب کے ایکشن بٹنز */}
               <View style={styles.shortsActions}>
                 <TouchableOpacity style={styles.actionIcon}>
                   <Text style={styles.iconText}>❤️</Text>
@@ -97,6 +106,7 @@ export default function HomeAndShortsScreen() {
                 </TouchableOpacity>
               </View>
 
+              {/* نچلی مینو اور معلومات */}
               <View style={styles.shortsOverlay}>
                 <Text style={styles.shortsCreator}>{item.creator}</Text>
                 <Text style={styles.shortsTitle}>{item.title}</Text>
@@ -132,6 +142,7 @@ const styles = StyleSheet.create({
   shortsPage: { width: width, height: height - 120, justifyContent: 'center', alignItems: 'center', backgroundColor: '#050505' },
   shortsVideoPlaceholder: { ...StyleSheet.absoluteFillObject, justifyContent: 'center', alignItems: 'center', backgroundColor: '#1a1a1a' },
   shortsPlayingText: { color: '#ff2d55', fontWeight: 'bold' },
+  adBannerText: { color: '#888', fontSize: 10, marginTop: 3 },
   shortsActions: { position: 'absolute', right: 15, bottom: 100, alignItems: 'center' },
   actionIcon: { marginBottom: 20, alignItems: 'center' },
   iconText: { fontSize: 28 },
