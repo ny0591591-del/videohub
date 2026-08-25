@@ -1,6 +1,6 @@
 {
-  "name": "",
-  "version": "1.0.0",idiamondtube",
+  "name": "videohub",
+  "version": "1.0.0",
   "main": "App.js",
   "dependencies": {
     "expo": "~51.0.0",
