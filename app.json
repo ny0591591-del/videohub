@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "VideoHub",
-    "slug": "videohub",
+    "name": "I Diamond Tube",
+    "slug": "i-diamond-tube",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -10,6 +10,11 @@
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "06e5d909-0a16-4db8-bc37-0e0f140a0660"
+      }
     },
     "assetBundlePatterns": [
       "**/*"
@@ -22,7 +27,10 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.videohub.app"
+      "package": "com.idiamond.tube",
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-4621380165642947~4565299022"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
