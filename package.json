@@ -1,6 +1,6 @@
 {
-  "name": "videohub-app",
-  "version": "1.0.0",
+  "name": "",
+  "version": "1.0.0",IDiamondTube",
   "main": "App.js",
   "dependencies": {
     "expo": "~51.0.0",
